@@ -2,15 +2,19 @@ const inputEl = document.querySelector("#input-el")
 const inputBtn = document.querySelector("#input-btn")
 let myLeads = []
 let ulEl = document.querySelector("#ul-el")
-
-localStorage.setItem("inputEl", "ulEl")
+const deleteBtn = document.querySelector("#delete-btn")
 
 const leadFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 
 if(leadFromLocalStorage){
     myLeads = leadFromLocalStorage
-    renderLeads()
+    renderList()
 }
+deleteBtn.addEventListener("dblclick", function(){
+    localStorage.clear()
+    myLeads = []
+    renderList()
+})
 
 
 inputBtn.addEventListener("click", function(){
@@ -22,24 +26,11 @@ inputBtn.addEventListener("click", function(){
      
 })
  
-function renderList (){
-
-    let listItem = `<li>
-                        <a target="_blank" href= "${inputEl.value}"> ${inputEl.value} </a>
-                    </li>`
-    ulEl.innerHTML += listItem
-//This can be done without using loop as well
-    // let listItem = ""
-
-    // for(let i = 0; i < myLeads.length; i++){ 
-    // listItem += "<li>" + myLeads[i]+ "</li>"
-// Other way to fetch the input text from the html in inorder list
-   // let li = document.createElement("li")
-   // li.textContent = myLeads[i]
-   // ulEl.append(li)
+function renderList(){
+    ulEl.innerHTML = ""
+    for(let i = 0; i < myLeads.length; i++){
+        ulEl.innerHTML += `<li>
+                            <a target="_blank" href="${myLeads[i]}">${myLeads[i]}</a>
+                        </li>`
+    }
 }
-    ulEl.innerHTML = listItem
-
-
-
-
