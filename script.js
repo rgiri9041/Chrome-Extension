@@ -8,29 +8,32 @@ const leadFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 
 if(leadFromLocalStorage){
     myLeads = leadFromLocalStorage
-    renderList()
+    render(myLeads)
 }
+
+function render(leads){
+    ulEl.innerHTML = ""
+    for(let i = 0; i < leads.length; i++){
+        ulEl.innerHTML += `<li>
+                            <a target="_blank" href="${leads[i]}">${leads[i]}</a>
+                        </li>`
+    }
+}
+
 deleteBtn.addEventListener("dblclick", function(){
     localStorage.clear()
     myLeads = []
-    renderList()
+    render(myLeads)
 })
 
 
 inputBtn.addEventListener("click", function(){
-    myLeads.push(inputEl.value)
-    renderList()
+    if(inputEl.value.trim() === "") return
+    myLeads.push(inputEl.value.trim())
+    render(myLeads)
     inputEl.value = "" // to clear the input value in the box
     //save mylead array to localStorage
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
-     
 })
  
-function renderList(){
-    ulEl.innerHTML = ""
-    for(let i = 0; i < myLeads.length; i++){
-        ulEl.innerHTML += `<li>
-                            <a target="_blank" href="${myLeads[i]}">${myLeads[i]}</a>
-                        </li>`
-    }
-}
+
