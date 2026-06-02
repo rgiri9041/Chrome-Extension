@@ -18,8 +18,15 @@ button{
     color: white;
     font-weight: bold;
     padding: 10px 10px;
-    border: none;
+    border: 1px solid green;
     border-radius: 5px;
+}
+#delete-btn{
+    background: white;
+    color:green;
+    font-weight: bold;
+    padding: 10px 10px;
+    border: 1px solid green;
 }
 
 ul{
