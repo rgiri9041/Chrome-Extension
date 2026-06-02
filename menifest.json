@@ -1,9 +1,0 @@
-{
-    "mainfest-version": "1",
-    "version": "1.0",
-    "name": "Track me",
-    "action": {
-        "default_popup": "index.html",
-        "default_icon": "track me.png"
-    }
-}
